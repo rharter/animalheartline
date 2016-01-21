@@ -1,0 +1,26 @@
+{
+  "name": "animalheartline-website",
+  "version": "1.0.0",
+  "description": "adopt all the things",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rharter/animalheartline-website.git"
+  },
+  "author": "Ryan Harter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rharter/animalheartline-website/issues"
+  },
+  "homepage": "https://github.com/rharter/animalheartline-website#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-compass": "^1.0.4",
+    "grunt-s3": "^0.1.0",
+    "grunt-smushit": "^1.3.0"
+  }
+}
