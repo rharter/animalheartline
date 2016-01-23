@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     coffee: {
       app: {
         src: ["coffee/app.coffee"],
-        dest: "dist/js/app.js",
+        dest: "js/app.js",
         options: {
           bare: true
         }
@@ -15,19 +15,11 @@ module.exports = function(grunt) {
       dist: {
         options: {
           sassDir: 'sass',
-          cssDir: 'dist/assets/',
-          imagesDir: 'dist/img',
+          cssDir: 'css/',
+          imagesDir: 'img/',
           relativeAssets: true,
           noLineComments: true,
           environment: 'production'
-        }
-      },
-      dev: {
-        options: {
-          sassDir: 'sass',
-          cssDir: 'dist/assets/',
-          imagesDir: 'dist/img',
-          relativeAssets: true
         }
       }
     },
@@ -50,5 +42,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compass', 'js']);
   grunt.registerTask('js', 'coffee');
-  grunt.registerTask('uploadjs', 'js')
+  grunt.registerTask('uploadjs', 'js');
 };
