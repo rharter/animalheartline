@@ -1,0 +1,92 @@
+<html>
+<head>
+  <!-- Ideally you should minify + gzip and host this yourself like a boss -->
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="css/screen.css" />
+
+</head>
+<body>
+  <section id="header">
+    <img id="logo" src="img/logo.png" />
+    <h1>Animal Hearline Humane Association</h1>
+  </section>
+
+  <nav>
+    <ul id="menu">
+      <li>ADOPT</li>
+      <li>RAISE</li>
+      <li>PARTICIPATE</li>
+      <li>LEARN</li>
+    </ul>
+  </nav>
+
+  <section id="content">
+    <section id="pets">
+      <div class="image">
+        <img/>
+      </div>
+      <div class="title">
+        <h1/>
+        <h3/>
+      </div>
+      <p class="description"></p>
+      <a class="button primary" href="#">See App Pets</a>
+    </section>
+
+    <section id="social">
+      <div id="content">
+        <h1>See and Share Our Adoptables</h1>
+        <p>You can keep up with all the latest Animal Heartline information, including available animals for adoption and warm stories from past adoptions, by following us on Facebook or Instagram.</p>
+        <ul>
+          <li><a href="#"><img src="img/social-facebook.png" /></a></li>
+          <li><a href="#"><img src="img/social-instagram.png" /></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="donate">
+      <div id="content">
+        <h1>Support Our Mission</h1>
+        <div class="first">
+          <p>Shop just like you normally would at Amazon Smile and a portion of what you spend will be donated to Animal Heartline.</p>
+          <a href="#"><img src="img/btn_amazon_smile.png" /></a>
+        </div>
+        <div>
+          <p>Turn on Walk for a Dog when you walk your pups and WoofTrax will make a donation to Animal Heartline. The more you walk, the more they donate.</p>
+          <a href="#"><img src="img/btn_walk_for_dog.png" /></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div id="content">
+        <h1>Help a Pet Find a Home</h1>
+        <p>Animal Heartline Humane Association is entirely fost home based, so the more foster homes we have, the more animals we can help.  If you think you'd like to foster animals and help find them good homes, let us know!</p>
+        <a class="button primary" href="#">Become a Foster Home</a>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="footer">
+
+  </section>
+
+  <script src="js/jquery-1.12.0.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    window.api.getFirstPet(function(pet) {
+      document.querySelector('section#pets .image img').src = pet.image;
+      document.querySelector('section#pets h3').innerText = pet.breed;
+      document.querySelector('section#pets h1').innerText = pet.name;
+      document.querySelector('section#pets .description').innerText = pet.description;
+    });
+  </script>
+</body>
+</html>

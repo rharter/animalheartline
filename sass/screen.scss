@@ -1,3 +1,6 @@
+$colorAccent: #03A9F4;
+$fontColor: #000000;
+
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -5,6 +8,20 @@ html {
   body {
     margin: 0 auto;
     padding: 0;
+    font-family: sans-serif;
+    a.button {
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+      padding: 12px 24px;
+      border-radius: 4px;
+      color: #fff;
+      text-decoration: none;
+      &.primary {
+        background-color: $colorAccent;
+        box-shadow: 0 4px 4px #ccc;
+      }
+    }
 
     section#header {
       max-width: 800px;
@@ -20,18 +37,117 @@ html {
         float: left;
       }
     }
-    section {
-      nav {
-        ul#menu {
-          margin: 0;
-          padding: 8px 0 8px 0;
-          background-color: #673AB7;
-          font-family: sans-serif;
+    nav {
+      ul#menu {
+        margin: 0;
+        padding: 16px 0 16px 0;
+        background-color: #673AB7;
+        li {
+          margin-right: 8px;
+          display: inline-block;
+          color: #ffffff;
+          list-style-type: none;
+          font-weight: 100;
+        }
+      }
+    }
+
+    section#content {
+      section {
+        div#content {
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 16px;
+        }
+        h1 {
+          margin-top: 0.83em;
+          margin-bottom: 0.83em;
+          text-align: center;
+        }
+      }
+      section#pets {
+        margin: auto;
+        padding: 16px;
+        max-width: 600px;
+        text-align: center;
+        div.image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          max-height: 400px;
+        }
+        div.image img {
+          flex-shrink: 0;
+          min-width: 100%;
+          min-height: 100%;
+        }
+        div.title {
+          text-align: left;
+        }
+        h1 {
+          text-align: left;
+          display: inline-block;
+        }
+        h3 {
+          display: inline-block;
+          font-size: .8em;
+          margin-left: 16px;
+        }
+        p {
+          text-align: left;
+        }
+        a.button {
+          display: inline-block;
+          margin: auto;
+        }
+      }
+      section#social {
+        background-color: #E6E0F1;
+        div#content {
+          max-width: 600px;
+        }
+        p {
+        }
+        ul {
+          text-align: center;
           li {
-            margin-right: 8px;
             display: inline-block;
-            color: #ffffff;
-            list-style-type: none;
+            list-style: none;
+            padding-right: 32px;
+          }
+        }
+      }
+      section#donate {
+        display: block;
+        div#content {
+          max-width: 800px;
+          margin: 0 auto;
+          div {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            width: 49%;
+            text-align: center;
+            &.first {
+              border-right: 1px solid #ccc;
+            }
+            p {
+              text-align: left;
+              padding: 0 3em;
+            }
+          }
+        }
+      }
+
+      section#join {
+        background-color: #f7f7f7;
+        div#content {
+          max-width: 600px;
+          text-align: center;
+          p {
+            text-align: left;
           }
         }
       }
