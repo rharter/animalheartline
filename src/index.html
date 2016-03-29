@@ -8,18 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#673AB7">
 
-  <link href='https://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300|Josefin+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/screen.css" />
 
 </head>
 <body>
   <section id="header">
     <img id="logo" src="img/logo.png" />
-    <h1>Animal Hearline Humane Association</h1>
+    <h1> Animal Heartline Humane Association</h1>
   </section>
 
-  <nav>
-    <ul id="menu">
+  <nav class="nav">
+    <ul id="menu" class="nav-list">
+      <li><a href="javascript:toggleMenu();">MENU</a></li>
       <li><a target="_blank" href="http://goo.gl/forms/rqvP0gXHiu">ADOPT</a></li>
       <li><a href="#">RAISE</a></li>
       <li><a href="#">PARTICIPATE</a></li>
@@ -78,7 +79,7 @@
       <div id="content" class="row">
         <div class="col-6 center">
           <h1>Help a Pet Find a Home</h1>
-          <p>Animal Heartline Humane Association is entirely fost home based, so the more foster homes we have, the more animals we can help.  If you think you'd like to foster animals and help find them good homes, let us know!</p>
+          <p>Animal Heartline Humane Association is entirely foster home based, so the more foster homes we have, the more animals we can help.  If you think you'd like to foster animals and help find them good homes, let us know!</p>
           <div class="row">
             <a class="col-6 center button primary" href="#">Become a Foster Home</a>
           </div>
@@ -131,6 +132,28 @@
       $.get(url, function(resp) {
         link.href = resp.pet.pet_details_url;
       });
+    }
+
+    // hasClass
+    function hasClass(elem, className) {
+        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+    }
+
+    // toggleClass
+    function toggleClass(elem, className) {
+        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
+        if (hasClass(elem, className)) {
+            while (newClass.indexOf(' ' + className + ' ') >= 0) {
+                newClass = newClass.replace(' ' + className + ' ', ' ');
+            }
+            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+        } else {
+            elem.className += ' ' + className;
+        }
+    }
+
+    function toggleMenu() {
+      toggleClass(document.querySelector('.nav-list'), 'nav-active');
     }
   </script>
 </body>
