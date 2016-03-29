@@ -38,6 +38,13 @@ html {
     margin: 0 auto;
   }
 
+  @media only screen and (max-width: 768px) {
+    /* for mobiles */
+    [class*="col-"] {
+      width: 100%;
+    }
+  }
+
   h1 {
     font-size: 1.8em;
     font-weight: 600;
@@ -85,9 +92,19 @@ html {
         padding: 16px 0 16px 0;
         background-color: #673AB7;
         li {
-          margin-right: 8px;
+          padding-left: 16px;
+          padding-right: 16px;
           display: inline-block;
           list-style-type: none;
+        }
+
+        @media only screen and (max-width: 768px) {
+          /* for mobiles */
+          li {
+            width: 100%;
+            padding: 8px;
+            text-align: center;
+          }
         }
         a {
           color: #ffffff;
@@ -130,11 +147,6 @@ html {
 
       section#social {
         background-color: #E6E0F1;
-        div#content {
-          max-width: 600px;
-          margin: 8px auto;
-          padding: 16px 0;
-        }
         p {
         }
         ul {
@@ -149,21 +161,23 @@ html {
       section#donate {
         display: block;
         div#content {
-          max-width: 800px;
-          margin: 8px auto;
-          padding: 16px 0;
           div {
-            margin: 0;
-            padding: 0;
-            display: inline-block;
-            width: 49%;
             text-align: center;
             &.first {
               border-right: 1px solid #ccc;
             }
+            @media only screen and (max-width: 768px) {
+              .first {
+                border: none;
+              }
+            }
             p {
               text-align: left;
               padding: 0 3em;
+            }
+            a {
+              display: inline-block;
+              margin: 16px auto;
             }
           }
         }
@@ -172,16 +186,9 @@ html {
       section#join {
         background-color: #f7f7f7;
         div#content {
-          max-width: 600px;
-          margin: auto;
-          padding: 16px 0;
           text-align: center;
           p {
             text-align: left;
-          }
-          a.button {
-            display: inline-block;
-            margin: 8px auto;
           }
         }
       }
