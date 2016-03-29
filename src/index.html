@@ -26,16 +26,20 @@
   </nav>
 
   <section id="content">
-    <section id="pets">
-      <div class="image">
-        <img/>
+    <section id="pets" class="row">
+      <div class="col-6 center">
+        <div class="row">
+          <div class="pet-cell col-6"></div>
+          <div class="pet-cell col-6"></div>
+        </div>
+        <div class="row">
+          <div class="pet-cell col-6"></div>
+          <div class="pet-cell col-6"></div>
+        </div>
+        <div class="row">
+          <a class="col-4 center button primary" href="#">See All Pets</a>
+        </div>
       </div>
-      <div class="title">
-        <h1/>
-        <h3/>
-      </div>
-      <p class="description"></p>
-      <a class="button primary" href="#">See App Pets</a>
     </section>
 
     <section id="social">
@@ -81,12 +85,42 @@
   <script src="js/app.js"></script>
 
   <script>
-    window.api.getFirstPet(function(pet) {
-      document.querySelector('section#pets .image img').src = pet.image;
-      document.querySelector('section#pets h3').innerText = pet.breed;
-      document.querySelector('section#pets h1').innerText = pet.name;
-      document.querySelector('section#pets .description').innerText = pet.description;
+    window.api.getPets(4, function(resp) {
+      if (resp === undefined || resp.status !== "ok") {
+        // TODO
+        return;
+      }
+
+      var totalPetCount = resp.total_pets;
+      var button = document.querySelector('section#pets a.button.primary');
+      button.textContent = "See All " + totalPetCount + " Pets";
+
+      var cells = document.querySelectorAll('section#pets .pet-cell');
+      var count = resp.returned_pets;
+      for (var i = 0; i < count && i < cells.length; i++) {
+        var pet = resp.pets[i];
+        var cell = cells[i];
+
+        var link = document.createElement('a');
+        link.target = "_blank";
+        loadDetailUrl(pet.details_url, link);
+        cell.appendChild(link);
+
+        var img = document.createElement('img');
+        img.src = pet.large_results_photo_url;
+        link.appendChild(img);
+
+        var name = document.createElement('h1');
+        name.textContent = pet.pet_name;
+        link.appendChild(name);
+      }
     });
+
+    function loadDetailUrl(url, link) {
+      $.get(url, function(resp) {
+        link.href = resp.pet.pet_details_url;
+      });
+    }
   </script>
 </body>
 </html>
