@@ -40,12 +40,15 @@ html {
 
   h1 {
     font-size: 1.8em;
+    font-weight: 600;
   }
 
   body {
     margin: 0 auto;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #4a4a4a;
 
     a.button {
       text-align: center;
@@ -66,6 +69,7 @@ html {
       padding-bottom: 8px;
       h1 {
         margin: 0;
+        color: #121212;
         font-family: 'Nothing You Could Do', cursive;
       }
       img#logo {
@@ -123,10 +127,13 @@ html {
           margin: 8px auto;
         }
       }
+
       section#social {
         background-color: #E6E0F1;
         div#content {
           max-width: 600px;
+          margin: 8px auto;
+          padding: 16px 0;
         }
         p {
         }
@@ -143,7 +150,8 @@ html {
         display: block;
         div#content {
           max-width: 800px;
-          margin: 0 auto;
+          margin: 8px auto;
+          padding: 16px 0;
           div {
             margin: 0;
             padding: 0;
@@ -165,11 +173,29 @@ html {
         background-color: #f7f7f7;
         div#content {
           max-width: 600px;
+          margin: auto;
+          padding: 16px 0;
           text-align: center;
           p {
             text-align: left;
           }
+          a.button {
+            display: inline-block;
+            margin: 8px auto;
+          }
         }
+      }
+    }
+
+    section#footer {
+      background-color: #727272;
+      text-align: center;
+      padding: 16px;
+      p {
+        color: #cecece;
+        font-size: .8em;
+        padding: 36px;
+        margin: 0;
       }
     }
   }
