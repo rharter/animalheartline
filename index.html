@@ -1,0 +1,162 @@
+<html>
+<head>
+  <!-- Ideally you should minify + gzip and host this yourself like a boss -->
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#673AB7">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300|Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/screen.css" />
+
+  <title>Animal Heartline | Home</title>
+  
+  <script src="/js/jquery-1.12.0.min.js"></script>
+  <script src="/js/app.js"></script>
+
+</head>
+
+<body>
+  <section id="header">
+  <a href="/">
+    <img id="logo" src="/img/logo.png" />
+    <h1>Animal Heartline Humane Association</h1>
+  </a>
+</section>
+
+
+  <nav class="nav">
+  <ul id="menu" class="nav-list">
+    <li><a id="menu" href="#">MENU</a></li>
+    <li><a target="_blank" href="http://goo.gl/forms/rqvP0gXHiu">ADOPT</a></li>
+    <li><a href="/raise/">RAISE</a></li>
+    <li><a href="/participate/">PARTICIPATE</a></li>
+    <li><a href="/learn/">LEARN</a></li>
+  </ul>
+</nav>
+
+
+  <section id="content">
+    <section id="pets">
+      <div class="row">
+        <h1>Meet Your New Best Friend</h1>
+        <div class="col-6 center">
+          <div class="row">
+            <div class="pet-cell col-6"></div>
+            <div class="pet-cell col-6"></div>
+          </div>
+          <div class="row">
+            <div class="pet-cell col-6"></div>
+            <div class="pet-cell col-6"></div>
+          </div>
+          <div class="row">
+            <a class="col-4 center button primary" href="#">See All Pets</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="social">
+      <div id="content" class="row">
+        <div class="col-6 center">
+          <h1>See and Share Our Adoptables</h1>
+          <p>
+            You can keep up with all the latest Animal Heartline information, including
+            available animals for adoption and warm stories from past adoptions, by
+            following us on Facebook or Instagram.
+          </p>
+          <ul>
+            <li><a href="https://www.facebook.com/animalheartline"><img src="/img/social-facebook.png" /></a></li>
+            <li><a href="https://www.instagram.com/animalheartline/"><img src="/img/social-instagram.png" /></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="donate">
+      <div id="content" class="row">
+        <h1>Support Our Mission</h1>
+        <div class="col-8 center">
+          <div class="first col-6">
+            <p>
+              Shop just like you normally would at Amazon Smile and a portion of what
+              you spend will be donated to Animal Heartline.
+            </p>
+            <a target="_blank" href="http://smile.amazon.com/"><img src="img/btn_amazon_smile.png" /></a>
+          </div>
+          <div class="col-6">
+            <p>
+              Turn on Walk for a Dog when you walk your pups and WoofTrax will make a
+              donation to Animal Heartline. The more you walk, the more they donate.
+            </p>
+            <a target="_blank" href="http://www.wooftrax.com/"><img src="img/btn_walk_for_dog.png" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div id="content" class="row">
+        <div class="col-6 center">
+          <h1>Help a Pet Find a Home</h1>
+          <p>
+            Animal Heartline Humane Association is entirely foster home based, so
+            the more foster homes we have, the more animals we can help.  If you
+            think you'd like to foster animals and help find them good homes, let us know!
+          </p>
+          <div class="row">
+            <a class="col-6 center button primary" href="mailto:animalheartline@hotmail.com?subject=Foster%20Information">Become a Foster Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="footer">
+  <p>&copy; 2016 Animal Heartline Humane Association.<br/>All Rights Reserved.</p>
+</section>
+
+
+  <script>
+    window.api.getPets(4, function(resp) {
+      if (resp === undefined || resp.status !== "ok") {
+        // TODO
+        return;
+      }
+
+      var totalPetCount = resp.total_pets;
+      var button = document.querySelector('section#pets a.button.primary');
+      button.textContent = "See All " + totalPetCount + " Pets";
+
+      var cells = document.querySelectorAll('section#pets .pet-cell');
+      var count = resp.returned_pets;
+      for (var i = 0; i < count && i < cells.length; i++) {
+        var pet = resp.pets[i];
+        var cell = cells[i];
+
+        var link = document.createElement('a');
+        link.target = "_blank";
+        loadDetailUrl(pet.details_url, link);
+        cell.appendChild(link);
+
+        var img = document.createElement('img');
+        img.src = pet.large_results_photo_url;
+        link.appendChild(img);
+
+        var name = document.createElement('h1');
+        name.textContent = pet.pet_name;
+        link.appendChild(name);
+      }
+    });
+
+    function loadDetailUrl(url, link) {
+      $.get(url, function(resp) {
+        link.href = resp.pet.pet_details_url;
+      });
+    }
+  </script>
+</body>
+</html>
