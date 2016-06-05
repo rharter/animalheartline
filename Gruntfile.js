@@ -2,6 +2,16 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    includereplace: {
+      dist: {
+        options: {
+          includesDir: 'src/_includes/'
+        },
+        files: [
+          {src: ['**/*.html', '!_includes/**/*.html'], dest: 'dist/', expand: true, cwd: 'src/'}
+        ]
+      }
+    },
     coffee: {
       app: {
         src: ["coffee/*.coffee"],
@@ -24,12 +34,12 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      html: {
-        expand: true,
-        cwd: 'src',
-        src: '**',
-        dest: 'dist/'
-      },
+      // html: {
+      //   expand: true,
+      //   cwd: 'src',
+      //   src: '**',
+      //   dest: 'dist/'
+      // },
       images: {
         src: 'img/*',
         dest: 'dist/'
@@ -58,8 +68,8 @@ module.exports = function(grunt) {
         }
       },
       html: {
-        files: ["src/*"],
-        tasks: "copy",
+        files: ["src/**"],
+        tasks: "includereplace",
         options: {
           livereload: true
         }
@@ -91,9 +101,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-include-replace');
 
-  grunt.registerTask('default', ['compass', 'js', 'copy']);
+  grunt.registerTask('default', ['includereplace', 'compass', 'js', 'copy']);
   grunt.registerTask('js', 'coffee');
   grunt.registerTask('uploadjs', 'js');
-  grunt.registerTask('serve', ['compass', 'js', 'copy', 'connect:server', 'watch'])
+  grunt.registerTask('serve', ['includereplace', 'compass', 'js', 'copy', 'connect:server', 'watch'])
 };
