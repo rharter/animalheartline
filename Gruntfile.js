@@ -103,8 +103,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-include-replace');
 
-  grunt.registerTask('default', ['includereplace', 'compass', 'js', 'copy']);
-  grunt.registerTask('js', 'coffee');
-  grunt.registerTask('uploadjs', 'js');
-  grunt.registerTask('serve', ['includereplace', 'compass', 'js', 'copy', 'connect:server', 'watch'])
+  grunt.registerTask('build', ['includereplace', 'compass', 'coffee', 'copy']);
+  grunt.registerTask('serve', ['build', 'connect:server', 'watch'])
+
+  grunt.registerTask('default', 'build');
 };
