@@ -5,6 +5,9 @@ module.exports = function(grunt) {
     includereplace: {
       dist: {
         options: {
+          globals: {
+            basedir: grunt.option('basedir') || '',
+          },
           includesDir: 'src/_includes/'
         },
         files: [
